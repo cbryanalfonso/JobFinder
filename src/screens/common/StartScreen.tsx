@@ -4,8 +4,15 @@ import {  backGroundScreenStart } from '../../assets/styles/stylesGeneral';
 import { TextUi } from '../../components/Text/TextUi';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { ButtonNext } from '../../components/Buttons/ButtonNext';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../Hooks/navigations/exportNavigation';
+import { useNavigation } from '@react-navigation/core';
+
+type noAunth = NativeStackNavigationProp<RootStackParamList>;
 
 export const StartScreen = () => {
+  const navigation = useNavigation<noAunth>();
+
   return (
    <SafeAreaView style={styles.container}>
        <View style={styles.subContainerImage}>
@@ -20,7 +27,9 @@ export const StartScreen = () => {
           <TextUi texto='Here!' style='txtTitleStart' />
        </View>
        <View style={styles.containerNext}>
-       <ButtonNext/>
+       <ButtonNext
+          onPress={()=>{navigation.navigate('LoginScreen')}}
+       />
        </View>
    </SafeAreaView>
   )
