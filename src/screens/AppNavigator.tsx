@@ -4,10 +4,13 @@ import { HomeJobs } from './Home/HomeJobs';
 import { StartScreen } from './common/StartScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../Hooks/navigations/exportNavigation';
+import { LoginScreen } from './common/LoginScreen';
+import { RegisterScreen } from './common/RegisterScreen';
 
 
 const MainStackAuth = createNativeStackNavigator();
-const MainStackNoAuth = createNativeStackNavigator();
+const MainStackNoAuth = createNativeStackNavigator<RootStackParamList>();
 
 export const AppNavigator = () => {
   const {user} = useApp();
@@ -18,6 +21,12 @@ export const AppNavigator = () => {
   const stackNoAuth = () => (
     <MainStackNoAuth.Navigator>
       <MainStackNoAuth.Screen name='StartScreen' component={StartScreen} options={{
+        headerShown: false,
+      }} />
+       <MainStackNoAuth.Screen name='LoginScreen' component={LoginScreen} options={{
+        headerShown: false,
+      }} />
+       <MainStackNoAuth.Screen name='RegisterScreen' component={RegisterScreen} options={{
         headerShown: false,
       }} />
     </MainStackNoAuth.Navigator>
