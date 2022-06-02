@@ -4,9 +4,17 @@ import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 Icon.loadFont();
-export const ButtonNext = () => {
+
+interface Props{
+  onPress: ()=> void;
+}
+
+export const ButtonNext = ({onPress}: Props) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity 
+    onPress={onPress}
+    style={styles.container}
+    >
      <Icon 
       name='arrow-right'
       size={wp(7)}
