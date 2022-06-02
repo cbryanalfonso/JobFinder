@@ -6,12 +6,15 @@ interface Props {
   texto: string;
   style: string;
   addStyle?: any;
+  onPress?: ()=>void
 }
 
-export const TextUi = ({texto, style, addStyle}: Props) => {
+export const TextUi = ({texto, style, addStyle, onPress}: Props) => {
   return (
     <>
-      <Text style={[getTextStyle(style) as any, addStyle ? addStyle : null]}>
+      <Text 
+      onPress={onPress}
+      style={[getTextStyle(style) as any, addStyle ? addStyle : null]}>
         {texto}
       </Text>
     </>
@@ -33,6 +36,42 @@ const getTextStyle = (color: any) => {
         fontWeight: 'bold',
         textDecorationLine: 'underline',
       };
+      case 'txtTitleNormalCommon':
+        return {
+          color: '#524B6B',
+          fontSize: wp(3),
+          textAlign: 'center'
+        };
+        case 'txtCommonEtiquetas':
+          return {
+            color: '#0D0140',
+            fontSize: wp(3.7),
+            fontWeight: 'bold',
+            alignSelf: 'flex-start',
+            marginLeft: wp(6)
+          };
+          case 'txtForgotPassword':
+            return {
+              color: '#0D0140',
+              fontSize: wp(3),
+              alignSelf: 'flex-end',
+              marginRight: wp(6),
+              textDecorationLine: 'underline',
+            };
+          case 'txtNormal':
+            return{
+              color: '#524B6B',
+              fontSize: wp(3.7),
+            }
+            case 'txtNormalOrange':
+              return{
+                color: '#FF9228',
+                fontSize: wp(3.7),
+              textDecorationLine: 'underline',
+              marginLeft: wp(2),
+  
+              }
+    
     default:
       return {
         color: '#FFFFFF',
