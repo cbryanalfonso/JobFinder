@@ -1,0 +1,12 @@
+export type RootStackParamList = {
+    LoginScreen: undefined;
+    RegisterScreen: undefined;
+    StartScreen: undefined;
+  };
+  
+  export type RootStackParamListAuth = {
+    Notifications: undefined;
+    AppBottom: undefined;
+    HomeEvents: undefined;
+    CreateNewEvent: undefined;
+  };
