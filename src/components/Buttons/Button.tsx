@@ -7,10 +7,11 @@ interface Props{
     text: string;
     addStyle?: any;
     addTxtStyle?: any
-    image?: boolean
+    image?: boolean;
+    onPress?: ()=>void;
 }
 
-export const ButtonUI = ({style, text, addStyle, addTxtStyle,image}: Props) => {
+export const ButtonUI = ({style, text, addStyle, addTxtStyle,image,onPress}: Props) => {
   return (
    <TouchableOpacity
     style={[
@@ -19,6 +20,7 @@ export const ButtonUI = ({style, text, addStyle, addTxtStyle,image}: Props) => {
         image ? 
         {flexDirection: 'row', justifyContent: 'space-evenly'} 
         : null ]}
+        onPress={onPress}
    >
        {image ?
         <Image
