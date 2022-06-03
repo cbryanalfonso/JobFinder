@@ -69,9 +69,22 @@ const getTextStyle = (color: any) => {
                 fontSize: wp(3.7),
               textDecorationLine: 'underline',
               marginLeft: wp(2),
-  
               }
-    
+              case 'txtNormalProfileHeader':
+                return{
+                  color: '#FFF',
+                  fontSize: wp(4),
+                  paddingLeft: wp(1),
+                  paddingTop: wp(2),
+                }
+                case 'txtNormalProfileHeaderBold':
+                  return{
+                    color: '#FFF',
+                    fontSize: wp(4),
+                    paddingLeft: wp(1),
+                    paddingTop: wp(2),
+                    fontWeight: 'bold'
+                  }
     default:
       return {
         color: '#FFFFFF',
