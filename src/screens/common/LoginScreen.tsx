@@ -8,11 +8,17 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../Hooks/navigations/exportNavigation';
 import {useNavigation} from '@react-navigation/core';
 import {Formik} from 'formik';
+import { useCommons } from '../../Hooks/useComons/useCommons';
 
 type noAunth = NativeStackNavigationProp<RootStackParamList>;
 
 export const LoginScreen = () => {
   const navigation = useNavigation<noAunth>();
+
+  const {
+    login
+  } = useCommons()
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
@@ -33,7 +39,7 @@ export const LoginScreen = () => {
             email: '',
             password: '',
           }}
-          onSubmit={values => console.log(values)}>
+          onSubmit={values => login(values)}>
           {({handleChange, handleBlur, handleSubmit, values}) => (
             <View>
               <TextUi texto="Email" style="txtCommonEtiquetas" />
