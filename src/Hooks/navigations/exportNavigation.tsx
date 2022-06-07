@@ -10,4 +10,5 @@ export type RootStackParamList = {
     HomeEvents: undefined;
     CreateNewEvent: undefined;
     Profile: undefined;
+    AboutMe: undefined;
   };

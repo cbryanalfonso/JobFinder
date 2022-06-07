@@ -8,9 +8,10 @@ import { RootStackParamList, RootStackParamListAuth } from '../Hooks/navigations
 import { LoginScreen } from './common/LoginScreen';
 import { RegisterScreen } from './common/RegisterScreen';
 import { AppBottomNavigator } from './AppBottomNavigator';
-import { ButtonNotificationHeades } from '../components/Buttons/ButtonNotificationHeades';
 import { Notifications } from './HomeProfile/Notifications';
 import { HomeProfile } from './HomeProfile/HomeProfile';
+import { StatusBar } from 'react-native';
+import AboutMe from './HomeProfile/AboutMe';
 
 const MainStackAuth = createNativeStackNavigator<RootStackParamListAuth>();
 const MainStackNoAuth = createNativeStackNavigator<RootStackParamList>();
@@ -22,6 +23,8 @@ export const AppNavigator = () => {
     <MainStackAuth.Screen name='AppBottom' component={AppBottomNavigator} options={{headerShown: false}}  />
     <MainStackAuth.Screen name='Notifications' component={Notifications}  />
     <MainStackAuth.Screen name='Profile' component={HomeProfile} options={{headerShown: false}} />
+    <MainStackAuth.Screen  name='AboutMe' component={AboutMe} options={{headerShown: false}} />
+    
   </MainStackAuth.Navigator>;
   const stackNoAuth = () => (
     <MainStackNoAuth.Navigator>
@@ -34,12 +37,15 @@ export const AppNavigator = () => {
        <MainStackNoAuth.Screen name='RegisterScreen' component={RegisterScreen} options={{
         headerShown: false,
       }} />
-    </MainStackNoAuth.Navigator>
+     </MainStackNoAuth.Navigator>
   );
 
   return (
+    <>
+    <StatusBar barStyle={'dark-content'} backgroundColor={'#FFF'} />
     <NavigationContainer>
       {user ? stackAuth() : stackNoAuth()}
     </NavigationContainer>
+    </>
   );
 };
