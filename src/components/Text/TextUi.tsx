@@ -85,6 +85,14 @@ const getTextStyle = (color: any) => {
                     paddingTop: wp(2),
                     fontWeight: 'bold'
                   }
+                case 'editInformationTitle':
+                  return{
+                    color: '#150B3D',
+                    fontSize: wp(4.3),
+                    fontWeight: 'bold',
+                    paddingLeft: wp(1),
+                    paddingTop: wp(2),
+                  }
     default:
       return {
         color: '#FFFFFF',
