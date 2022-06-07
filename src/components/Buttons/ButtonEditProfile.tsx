@@ -3,13 +3,21 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export const ButtonEditProfile = () => {
+interface Props {
+  txt: string;
+  iconName: string;
+  onPress?: ()=>void;
+}
+
+export const ButtonEditProfile = ({txt,iconName,onPress}: Props) => {
   return (
     <>
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity style={styles.container}
+      onPress={onPress}
+      >
         <View style={{flexDirection: 'row', alignItems: 'center', }}>
-        <Icon name="account" size={wp(8)} color={'#FF9228'} />
-        <Text style={styles.txt} >About Me</Text>
+        <Icon name={iconName} size={wp(8)} color={'#FF9228'} />
+        <Text style={styles.txt} >{txt}</Text>
         </View>
         <View style={styles.containerButton}>
           <Icon name="plus" size={wp(5)} color={'#FF9228'} />
@@ -34,7 +42,7 @@ const styles = StyleSheet.create({
   containerButton: {
     width: wp(8),
     height: wp(8),
-    backgroundColor: '#FF9E87',
+    backgroundColor: '#FAD0C7',
     borderRadius: wp(4),
     justifyContent: 'center',
     alignItems: 'center',
