@@ -96,7 +96,10 @@ export const HomeProfile = () => {
             }}
           />
             )
-            :( <ButtonEditProfile iconName="account" txt="About me" onPress={()=>{
+            :( <ButtonEditProfile 
+              iconName="account" 
+              txt="About me" 
+              onPress={()=>{
               setShowAboutMe(true)
             }} />)}
          
