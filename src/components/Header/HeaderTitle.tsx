@@ -17,7 +17,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         height: wp(11),
         justifyContent:"center",
-        alignItems: 'center'
+        alignItems: 'center',
+        alignSelf: 'center'
+        
     },
     textCenter:{
         fontSize: wp(4.6),
