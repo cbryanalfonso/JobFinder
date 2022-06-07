@@ -8,6 +8,7 @@ export const useProfile = () => {
   const usuarioActual: string = auth.auth().currentUser?.uid!;
   const [imagen, setImagen] = useState(auth.auth().currentUser?.photoURL);
   const [name, setName] = useState(auth.auth().currentUser?.displayName);
+  const [showAboutMe, setShowAboutMe] = useState(false)
 
   function openCameraPhoto() {
     ImagePicker.openPicker({
@@ -56,5 +57,7 @@ export const useProfile = () => {
     openCameraPhoto,
     imagen,
     name,
+    showAboutMe,
+    setShowAboutMe,
   };
 };
