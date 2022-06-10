@@ -1,7 +1,7 @@
 import ImagePicker from 'react-native-image-crop-picker';
 import {firebase} from '@react-native-firebase/storage';
 import {firebase as auth} from '@react-native-firebase/auth';
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {firebase as db} from '@react-native-firebase/database';
 
 interface PropsAboutMe {
@@ -15,6 +15,7 @@ export const useProfile = () => {
   const [showAboutMe, setShowAboutMe] = useState(false);
   const [updateAboutMe, setUpdateAboutMe] = useState(false);
   const [aboutMe, setAboutMe] = useState('');
+  const bottomSheetRef = useRef(null);
 
   useEffect(() => {
    const data = aboutMeGetFirebase();
@@ -97,5 +98,6 @@ export const useProfile = () => {
     aboutMeFirebase,
     aboutMeGetFirebase,
     aboutMe,
+    bottomSheetRef,
   };
 };
