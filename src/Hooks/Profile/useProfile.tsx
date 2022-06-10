@@ -1,14 +1,25 @@
 import ImagePicker from 'react-native-image-crop-picker';
 import {firebase} from '@react-native-firebase/storage';
 import {firebase as auth} from '@react-native-firebase/auth';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {firebase as db} from '@react-native-firebase/database';
+
+interface PropsAboutMe {
+  textoAboutMe: string;
+}
 
 export const useProfile = () => {
   const usuarioActual: string = auth.auth().currentUser?.uid!;
   const [imagen, setImagen] = useState(auth.auth().currentUser?.photoURL);
   const [name, setName] = useState(auth.auth().currentUser?.displayName);
-  const [showAboutMe, setShowAboutMe] = useState(false)
+  const [showAboutMe, setShowAboutMe] = useState(false);
+  const [updateAboutMe, setUpdateAboutMe] = useState(false);
+  const [aboutMe, setAboutMe] = useState('');
+
+  useEffect(() => {
+   const data = aboutMeGetFirebase();
+   return data;
+  }, []);
 
   function openCameraPhoto() {
     ImagePicker.openPicker({
@@ -53,11 +64,38 @@ export const useProfile = () => {
       });
   };
 
+  const aboutMeFirebase = ({textoAboutMe}: PropsAboutMe) => {
+    db.database()
+      .ref(`/Usuarios/${usuarioActual}`)
+      .update({
+        aboutMe: textoAboutMe,
+      })
+      .then(() => {
+        console.log('Subida correctamente');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const aboutMeGetFirebase = () => {
+    db.database()
+    .ref(`/Usuarios/${usuarioActual}`)
+    .on('value', snapshot => {
+      console.log('User data: ', snapshot.val());
+      setAboutMe(snapshot.val().aboutMe);
+    });
+  };
+ 
+
   return {
     openCameraPhoto,
     imagen,
     name,
     showAboutMe,
     setShowAboutMe,
+    aboutMeFirebase,
+    aboutMeGetFirebase,
+    aboutMe,
   };
 };

@@ -26,11 +26,7 @@ type navigationHeader = NativeStackNavigationProp<RootStackParamListAuth>;
 export const HomeProfile = () => {
   const navigation = useNavigation<navigationHeader>();
 
-  const {openCameraPhoto, 
-    imagen, 
-    name, 
-    showAboutMe, 
-    setShowAboutMe} =
+  const {openCameraPhoto, imagen, name, showAboutMe, setShowAboutMe, aboutMe} =
     useProfile();
 
   return (
@@ -86,24 +82,25 @@ export const HomeProfile = () => {
         </View>
         <ScrollView
           contentContainerStyle={{alignItems: 'center', marginBottom: wp(10)}}>
-            {showAboutMe ? (
-              <ButtonInformation
-            iconName="account"
-            txt="About me"
-            txtInformation="EJEMPLO DE TEXT"
-            onPress={() => {
-              navigation.navigate('AboutMe');
-            }}
-          />
-            )
-            :( <ButtonEditProfile 
-              iconName="account" 
-              txt="About me" 
-              onPress={()=>{
-              setShowAboutMe(true)
-            }} />)}
-         
-          
+          {showAboutMe ? (
+            <ButtonInformation
+              iconName="account"
+              txt="About me"
+              txtInformation={aboutMe ? aboutMe : ' Algo '}
+              onPress={() => {
+                navigation.navigate('AboutMe');
+              }}
+            />
+          ) : (
+            <ButtonEditProfile
+              iconName="account"
+              txt="About me"
+              onPress={() => {
+                setShowAboutMe(true);
+              }}
+            />
+          )}
+
           <ButtonEditProfile iconName="account" txt="Work experience" />
           <ButtonEditProfile iconName="account" txt="Education" />
           <ButtonEditProfile iconName="account" txt="Skill" />
