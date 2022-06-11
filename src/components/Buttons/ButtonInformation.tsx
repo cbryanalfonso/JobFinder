@@ -7,10 +7,19 @@ interface Props {
   onPress?: () => void;
   iconName: string;
   txt: string;
-  txtInformation: string;
+  txtInformation: string | undefined;
+  workExp?: boolean;
+  txtNameCompany?: string;
 }
 
-export const ButtonInformation = ({iconName, txt, onPress, txtInformation}: Props) => {
+export const ButtonInformation = ({
+  iconName,
+  txt,
+  onPress,
+  txtInformation,
+  workExp = false,
+  txtNameCompany,
+}: Props) => {
   return (
     <>
       <View style={styles.container}>
@@ -18,9 +27,7 @@ export const ButtonInformation = ({iconName, txt, onPress, txtInformation}: Prop
           <Icon name={iconName} size={wp(8)} color={'#FF9228'} />
           <Text style={styles.txt}>{txt}</Text>
         </View>
-        <TouchableOpacity style={styles.containerButton}
-          onPress={onPress}
-        >
+        <TouchableOpacity style={styles.containerButton} onPress={onPress}>
           <Icon name="pencil-outline" size={wp(5)} color={'#FF9228'} />
         </TouchableOpacity>
       </View>
@@ -33,12 +40,26 @@ export const ButtonInformation = ({iconName, txt, onPress, txtInformation}: Prop
           borderBottomLeftRadius: wp(5),
           borderBottomRightRadius: wp(5),
           marginBottom: wp(2),
-          justifyContent: 'flex-start'
+          justifyContent: 'flex-start',
         }}>
         <View style={styles.line} />
-        <Text style={styles.txtInformation}>
-            {txtInformation}
-        </Text>
+        {workExp ? (
+          <>
+            <Text
+              style={[
+                styles.txtInformation,
+                {
+                  fontWeight: 'bold',
+                  marginBottom: wp(0),
+                },
+              ]}>
+              {txtNameCompany}
+            </Text>
+            <Text style={styles.txtInformation}>{txtInformation}</Text>
+          </>
+        ) : (
+          <Text style={styles.txtInformation}>{txtInformation}</Text>
+        )}
       </View>
     </>
   );
@@ -76,10 +97,10 @@ const styles = StyleSheet.create({
     borderColor: '#DEE1E7',
     alignSelf: 'center',
   },
-  txtInformation:{
-      color: '#524B6B',
-      fontSize: wp(3),
-      marginTop: wp(2),
-      marginBottom: wp(3)
-  }
+  txtInformation: {
+    color: '#524B6B',
+    fontSize: wp(3),
+    marginTop: wp(2),
+    marginBottom: wp(3),
+  },
 });
