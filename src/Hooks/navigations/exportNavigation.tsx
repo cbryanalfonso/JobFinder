@@ -11,4 +11,5 @@ export type RootStackParamList = {
     CreateNewEvent: undefined;
     Profile: undefined;
     AboutMe: undefined;
+    WorkExperience: undefined;
   };

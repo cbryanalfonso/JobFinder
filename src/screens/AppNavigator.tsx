@@ -12,6 +12,9 @@ import { Notifications } from './HomeProfile/Notifications';
 import { HomeProfile } from './HomeProfile/HomeProfile';
 import { StatusBar } from 'react-native';
 import AboutMe from './HomeProfile/AboutMe';
+import { WorkExperience } from './HomeProfile/WorkExperience';
+import { ButtonBack } from '../components/Buttons/ButtonBack';
+import { backGroundScreenStart } from '../assets/styles/stylesGeneral';
 
 const MainStackAuth = createNativeStackNavigator<RootStackParamListAuth>();
 const MainStackNoAuth = createNativeStackNavigator<RootStackParamList>();
@@ -24,7 +27,13 @@ export const AppNavigator = () => {
     <MainStackAuth.Screen name='Notifications' component={Notifications}  />
     <MainStackAuth.Screen name='Profile' component={HomeProfile} options={{headerShown: false}} />
     <MainStackAuth.Screen  name='AboutMe' component={AboutMe} options={{headerShown: false}} />
-    
+    <MainStackAuth.Screen name='WorkExperience' component={WorkExperience} options={{
+       headerStyle: {
+        backgroundColor: backGroundScreenStart,
+      },
+      headerLeft: props => <ButtonBack style='buttonBackAboutMe' colorIcon='#3B4657' />,
+      
+    }}/>
   </MainStackAuth.Navigator>;
   const stackNoAuth = () => (
     <MainStackNoAuth.Navigator>
