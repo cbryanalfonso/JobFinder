@@ -26,8 +26,17 @@ type navigationHeader = NativeStackNavigationProp<RootStackParamListAuth>;
 export const HomeProfile = () => {
   const navigation = useNavigation<navigationHeader>();
 
-  const {openCameraPhoto, imagen, name, showAboutMe, setShowAboutMe, aboutMe} =
-    useProfile();
+  const {
+    openCameraPhoto,
+    imagen,
+    name,
+    showAboutMe,
+    setShowAboutMe,
+    aboutMe,
+    showWorkExperience,
+    setShowWorkExperience,
+    position
+  } = useProfile();
 
   return (
     <>
@@ -100,8 +109,27 @@ export const HomeProfile = () => {
               }}
             />
           )}
+          {showWorkExperience ? (
+            <ButtonInformation
+              iconName="briefcase"
+              txt="Work experience"
+              workExp={true}
+              txtInformation={position.jobTitle}
+              txtNameCompany={position.companyName}
+              onPress={() => {
+                navigation.navigate('WorkExperience');
+              }}
+            />
+          ) : (
+            <ButtonEditProfile
+              iconName="briefcase"
+              txt="Work experience"
+              onPress={() => {
+                setShowWorkExperience(true);
+              }}
+            />
+          )}
 
-          <ButtonEditProfile iconName="account" txt="Work experience" />
           <ButtonEditProfile iconName="account" txt="Education" />
           <ButtonEditProfile iconName="account" txt="Skill" />
           <ButtonEditProfile iconName="account" txt="Language" />
