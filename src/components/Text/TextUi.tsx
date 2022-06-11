@@ -48,7 +48,8 @@ const getTextStyle = (color: any) => {
             fontSize: wp(3.7),
             fontWeight: 'bold',
             alignSelf: 'flex-start',
-            marginLeft: wp(-3)
+            marginLeft: wp(-3),
+            marginTop: wp(2),
           };
           case 'txtForgotPassword':
             return {
