@@ -4,7 +4,7 @@ import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 interface Props {
-  placeholder: string;
+  placeholder?: string;
   nameRightIcon?: string;
   nameLeftIcon?: boolean;
   autocapitalize?: boolean;
