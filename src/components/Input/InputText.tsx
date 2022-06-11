@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
 interface Props {
-  placeholder: string;
+  placeholder?: string;
   nameRightIcon?: string;
   nameLeftIcon?: boolean;
   autocapitalize?: boolean;
@@ -17,6 +17,7 @@ interface Props {
   security?: boolean;
   addStyle?: any;
   passwordShow?: boolean;
+  addStyleContainer?: any;
 }
 
 export const InputText = ({
@@ -28,6 +29,7 @@ export const InputText = ({
   security,
   addStyle,
   passwordShow,
+  addStyleContainer
 }: Props) => {
   const [show, setShow] = useState(passwordShow);
   return (
@@ -35,6 +37,7 @@ export const InputText = ({
       style={[
         styles.containerBtn,
         passwordShow ? {flexDirection: 'row'} : null,
+        addStyleContainer ? addStyleContainer : null
       ]}>
       <TextInput
         placeholder={placeholder}
