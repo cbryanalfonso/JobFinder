@@ -12,4 +12,7 @@ export type RootStackParamList = {
     Profile: undefined;
     AboutMe: undefined;
     WorkExperience: undefined;
+    HomePost: undefined;
+    CreatePostorJob: undefined;
+    HomeCompany: undefined;
   };
