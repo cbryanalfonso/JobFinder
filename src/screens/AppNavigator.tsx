@@ -15,6 +15,8 @@ import AboutMe from './HomeProfile/AboutMe';
 import { WorkExperience } from './HomeProfile/WorkExperience';
 import { ButtonBack } from '../components/Buttons/ButtonBack';
 import { backGroundScreenStart } from '../assets/styles/stylesGeneral';
+import { CreatePostorJob } from './Post/CreatePostorJob';
+import { HomeCompany } from './Company/HomeCompany'
 
 const MainStackAuth = createNativeStackNavigator<RootStackParamListAuth>();
 const MainStackNoAuth = createNativeStackNavigator<RootStackParamList>();
@@ -34,6 +36,14 @@ export const AppNavigator = () => {
       headerLeft: props => <ButtonBack style='buttonBackAboutMe' colorIcon='#3B4657' />,
       
     }}/>
+    <MainStackAuth.Screen name='CreatePostorJob' component={CreatePostorJob} />
+    <MainStackAuth.Screen name='HomeCompany' component={HomeCompany} options={{
+       headerStyle: {
+        backgroundColor: backGroundScreenStart,
+      },
+      headerLeft: props => <ButtonBack style='buttonBackAboutMe' colorIcon='#3B4657' />,
+    }}
+    />
   </MainStackAuth.Navigator>;
   const stackNoAuth = () => (
     <MainStackNoAuth.Navigator>

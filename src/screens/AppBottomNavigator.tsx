@@ -11,11 +11,18 @@ import {HomePost} from './Post/HomePost';
 import {NewJobs} from './Jobs/NewJobs';
 import {HomeMessage} from './HomeChat/HomeMessage';
 import {HomeSavedJobs} from './Jobs/HomeSavedJobs';
+import { useNavigation } from '@react-navigation/core';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamListAuth } from '../Hooks/navigations/exportNavigation';
 Icon.loadFont();
 
 const Tab = createBottomTabNavigator();
 
+type navigationHeader = NativeStackNavigationProp<RootStackParamListAuth>;
+
 export const AppBottomNavigator = () => {
+
+  const navigation = useNavigation<navigationHeader>();
   const [activo, setActivo] = useState(false);
   const screenOptions = (route: any, color: string) => {
     let iconName: string = '';
@@ -121,9 +128,9 @@ export const AppBottomNavigator = () => {
                 height: wp(16),
                 borderRadius: wp(8),
               }}
-              /*  onPress={()=> {
-                  navigation.navigate('CreateNewEvent')
-                }} */
+                onPress={()=> {
+                  navigation.navigate('CreatePostorJob')
+                }}
             >
               <Icon name={'plus'} color={'white'} size={wp(8)} />
             </TouchableOpacity>
