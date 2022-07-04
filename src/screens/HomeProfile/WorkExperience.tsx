@@ -1,5 +1,12 @@
 import React, {useEffect} from 'react';
-import {SafeAreaView, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {TextUi} from '../../components/Text/TextUi';
 import {TextAreaInput} from '../../components/Input/TextAreaInput';
@@ -8,8 +15,15 @@ import {useProfile} from '../../Hooks/Profile/useProfile';
 import {Formik} from 'formik';
 import {backGroundScreenStart} from '../../assets/styles/stylesGeneral';
 import {InputText} from '../../components/Input/InputText';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamListAuth } from '../../Hooks/navigations/exportNavigation';
+import { useNavigation } from '@react-navigation/core';
+
+
+type navigationHeader = NativeStackNavigationProp<RootStackParamListAuth>;
 
 export const WorkExperience = () => {
+  const navigation = useNavigation<navigationHeader>();
   const {workExperienceMySelf} = useProfile();
   return (
     <>
@@ -37,11 +51,20 @@ export const WorkExperience = () => {
                   style="txtCommonEtiquetas"
                   addStyle={{alignSelf: 'flex-start', marginLeft: wp(4)}}
                 />
-                <InputText
+                <TouchableOpacity style={styles.selectCompany}
+                onPress={()=>{navigation.navigate('HomeCompany')}}
+                >
+                  <TextUi
+                    texto="Name company"
+                    style="txtCommonEtiquetas"
+                    addStyle={{alignSelf: 'flex-start', marginLeft: wp(0), fontWeight: 'normal', color: '#0D0140' }}
+                  />
+                </TouchableOpacity>
+                {/* <InputText
                   autocapitalize={true}
                   onChangeText={handleChange('jobTitle')}
                   value={values.jobTitle}
-                />
+                /> */}
                 <TextUi
                   texto="Company Name"
                   style="txtCommonEtiquetas"
@@ -52,7 +75,12 @@ export const WorkExperience = () => {
                   onChangeText={handleChange('companyName')}
                   value={values.companyName}
                 />
-                <View  style={{flexDirection: 'row', justifyContent: 'space-between', width: wp(80)}}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    width: wp(80),
+                  }}>
                   <View>
                     <TextUi
                       texto="Start Date"
@@ -83,10 +111,10 @@ export const WorkExperience = () => {
                   </View>
                 </View>
                 <TextUi
-                      texto="Description"
-                      style="txtCommonEtiquetas"
-                      addStyle={{alignSelf: 'flex-start', marginLeft: wp(4)}}
-                    />
+                  texto="Description"
+                  style="txtCommonEtiquetas"
+                  addStyle={{alignSelf: 'flex-start', marginLeft: wp(4)}}
+                />
                 <View style={styles.txtArea}>
                   <TextAreaInput
                     onChangeText={handleChange('description')}
@@ -132,5 +160,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'red',
+  },
+  selectCompany: {
+    backgroundColor: '#FFF',
+    width: wp(80),
+    paddingVertical: wp(3),
+    paddingHorizontal: wp(4),
+    borderRadius: wp(3),
+    marginTop: wp(4),
   },
 });
