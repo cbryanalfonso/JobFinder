@@ -35,7 +35,9 @@ export const HomeProfile = () => {
     aboutMe,
     showWorkExperience,
     setShowWorkExperience,
-    position
+    position,
+    showResume,
+    setShowResume,
   } = useProfile();
 
   return (
@@ -90,7 +92,7 @@ export const HomeProfile = () => {
           </View>
         </View>
         <ScrollView
-          contentContainerStyle={{alignItems: 'center', marginBottom: wp(10)}}>
+          contentContainerStyle={{alignItems: 'center',justifyContent: 'center',  marginBottom: wp(20),  }}>
           {showAboutMe ? (
             <ButtonInformation
               iconName="account"
@@ -134,7 +136,23 @@ export const HomeProfile = () => {
           <ButtonEditProfile iconName="account" txt="Skill" />
           <ButtonEditProfile iconName="account" txt="Language" />
           <ButtonEditProfile iconName="account" txt="Appreciation" />
-          <ButtonEditProfile iconName="account" txt="Resume" />
+          {showResume ? (
+            <ButtonInformation
+            iconName="briefcase"
+            txt="Resume"
+            workExp={true}
+            txtInformation={position.jobTitle}
+            txtNameCompany={position.companyName}
+            onPress={() => {
+              navigation.navigate('HomeResume');
+            }}
+          />
+          ):(
+            <ButtonEditProfile iconName="account" txt="Resume" 
+            onPress={() => {
+              setShowResume(true);
+            }}/>
+          )}
         </ScrollView>
       </View>
     </>
