@@ -17,6 +17,9 @@ import { ButtonBack } from '../components/Buttons/ButtonBack';
 import { backGroundScreenStart } from '../assets/styles/stylesGeneral';
 import { CreatePostorJob } from './Post/CreatePostorJob';
 import { HomeCompany } from './Company/HomeCompany'
+import { RegisterCompany } from './Company/RegisterCompany';
+import HomeResume from './HomeProfile/HomeResume';
+import CreatePost from './Post/CreatePost';
 
 const MainStackAuth = createNativeStackNavigator<RootStackParamListAuth>();
 const MainStackNoAuth = createNativeStackNavigator<RootStackParamList>();
@@ -44,6 +47,27 @@ export const AppNavigator = () => {
       headerLeft: props => <ButtonBack style='buttonBackAboutMe' colorIcon='#3B4657' />,
     }}
     />
+    <MainStackAuth.Screen name='CreatePost' component={CreatePost} options={{
+       headerStyle: {
+        backgroundColor: backGroundScreenStart,
+      },
+      headerLeft: props => <ButtonBack style='buttonBackAboutMe' colorIcon='#3B4657' />,
+    }}
+    />
+    <MainStackAuth.Screen name='RegisterCompany' component={RegisterCompany} options={{
+      headerStyle: {
+       backgroundColor: backGroundScreenStart,
+     },
+     headerLeft: props => <ButtonBack style='buttonBackAboutMe' colorIcon='#3B4657' />,
+   }}
+    />
+
+    <MainStackAuth.Screen name='HomeResume' component={HomeResume}  options={{
+      headerStyle: {
+       backgroundColor: backGroundScreenStart,
+     },
+     headerLeft: props => <ButtonBack style='buttonBackAboutMe' colorIcon='#3B4657' />,
+   }} />
   </MainStackAuth.Navigator>;
   const stackNoAuth = () => (
     <MainStackNoAuth.Navigator>
