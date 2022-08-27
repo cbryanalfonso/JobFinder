@@ -29,6 +29,7 @@ export const useProfile = () => {
   const [updateAboutMe, setUpdateAboutMe] = useState(false);
   const [aboutMe, setAboutMe] = useState('');
   const [position, setPosition] = useState<PropsResult>({});
+  const [showResume, setShowResume] = useState(false);
   const bottomSheetRef = useRef(null);
   const [showWorkExperience, setShowWorkExperience] = useState(false);
 
@@ -36,49 +37,6 @@ export const useProfile = () => {
     const data = aboutMeGetFirebase();
     return data;
   }, []);
-
-  function openCameraPhoto() {
-    ImagePicker.openPicker({
-      width: 300,
-      height: 300,
-      cropping: true,
-    })
-      .then(image => {
-        console.log(image);
-        //setImagen(image.path);
-        uploadPhoto(image.path);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-
-  const uploadPhoto = async (imagen: string) => {
-    const reference = firebase.storage().ref('avatars').child(usuarioActual);
-    await reference.putFile(imagen);
-
-    const url = await firebase
-      .storage()
-      .ref(`avatars/${usuarioActual}`)
-      .getDownloadURL();
-    console.log(url);
-    setImagen(url);
-
-    db.database()
-      .ref(`/Usuarios/${usuarioActual}`)
-      .update({
-        photoUrl: url,
-      })
-      .then(() => {
-        console.log('Subida correctamente');
-        auth.auth().currentUser?.updateProfile({
-          photoURL: url,
-        });
-      })
-      .catch(err => {
-        console.log('Erorr .....', err);
-      });
-  };
 
   const aboutMeFirebase = ({textoAboutMe}: PropsAboutMe) => {
     db.database()
@@ -98,7 +56,7 @@ export const useProfile = () => {
     db.database()
       .ref(`/Usuarios/${usuarioActual}`)
       .on('value', snapshot => {
-        console.log('User data: ', snapshot.val());
+       // console.log('User data: ', snapshot.val());
         setAboutMe(snapshot.val().aboutMe);
         setPosition({jobTitle: snapshot.val().jobTitle, companyName: snapshot.val().companyName});
       });
@@ -156,6 +114,55 @@ export const useProfile = () => {
       });
   };
 
+
+
+  /*** 
+   *  Funcion subir imagenes
+   */
+
+   function openCameraPhoto() {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 300,
+      cropping: true,
+    })
+      .then(image => {
+        console.log(image);
+        //setImagen(image.path);
+        uploadPhoto(image.path);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  const uploadPhoto = async (imagen: string) => {
+    const reference = firebase.storage().ref('avatars').child(usuarioActual);
+    await reference.putFile(imagen);
+
+    const url = await firebase
+      .storage()
+      .ref(`avatars/${usuarioActual}`)
+      .getDownloadURL();
+    console.log(url);
+    setImagen(url);
+
+    db.database()
+      .ref(`/Usuarios/${usuarioActual}`)
+      .update({
+        photoUrl: url,
+      })
+      .then(() => {
+        console.log('Subida correctamente');
+        auth.auth().currentUser?.updateProfile({
+          photoURL: url,
+        });
+      })
+      .catch(err => {
+        console.log('Erorr .....', err);
+      });
+  };
+
   return {
     openCameraPhoto,
     imagen,
@@ -170,5 +177,7 @@ export const useProfile = () => {
     setShowWorkExperience,
     workExperienceMySelf,
     position,
+    showResume,
+    setShowResume,
   };
 };
