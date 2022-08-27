@@ -15,16 +15,22 @@ import {useProfile} from '../../Hooks/Profile/useProfile';
 import {Formik} from 'formik';
 import {backGroundScreenStart} from '../../assets/styles/stylesGeneral';
 import {InputText} from '../../components/Input/InputText';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamListAuth } from '../../Hooks/navigations/exportNavigation';
-import { useNavigation } from '@react-navigation/core';
-
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamListAuth} from '../../Hooks/navigations/exportNavigation';
+import {useNavigation} from '@react-navigation/core';
+import {useCompany} from '../../Hooks/Company/useCompany';
 
 type navigationHeader = NativeStackNavigationProp<RootStackParamListAuth>;
 
 export const WorkExperience = () => {
   const navigation = useNavigation<navigationHeader>();
   const {workExperienceMySelf} = useProfile();
+  const {nameCompany} = useCompany();
+  useEffect(() => {
+   console.log(nameCompany);
+   
+  }, [nameCompany])
+  
   return (
     <>
       <StatusBar barStyle={'dark-content'} />
@@ -32,11 +38,11 @@ export const WorkExperience = () => {
         <Formik
           initialValues={{
             jobTitle: '',
-            companyName: '',
+            companyName: nameCompany,
             startDate: '',
             endDate: '',
             description: '',
-          }}
+          }} 
           onSubmit={values => workExperienceMySelf(values)}>
           {({handleChange, handleBlur, handleSubmit, values}) => (
             <>
@@ -51,30 +57,40 @@ export const WorkExperience = () => {
                   style="txtCommonEtiquetas"
                   addStyle={{alignSelf: 'flex-start', marginLeft: wp(4)}}
                 />
-                <TouchableOpacity style={styles.selectCompany}
-                onPress={()=>{navigation.navigate('HomeCompany')}}
-                >
-                  <TextUi
-                    texto="Name company"
-                    style="txtCommonEtiquetas"
-                    addStyle={{alignSelf: 'flex-start', marginLeft: wp(0), fontWeight: 'normal', color: '#0D0140' }}
-                  />
-                </TouchableOpacity>
-                {/* <InputText
+
+                <InputText
                   autocapitalize={true}
                   onChangeText={handleChange('jobTitle')}
                   value={values.jobTitle}
-                /> */}
+                />
                 <TextUi
                   texto="Company Name"
                   style="txtCommonEtiquetas"
                   addStyle={{alignSelf: 'flex-start', marginLeft: wp(4)}}
                 />
-                <InputText
+                <TouchableOpacity
+                  style={styles.selectCompany}
+                  onPress={() => {
+                    navigation.navigate('HomeCompany');
+                  }}>
+                 <TextUi
+                    texto={nameCompany ? nameCompany : 'Name Company'}
+                    style="txtCommonEtiquetas"
+                    addStyle={{
+                      alignSelf: 'flex-start',
+                      marginLeft: wp(0),
+                      fontWeight: 'normal',
+                      color: '#0D0140',
+                    }}
+                  /> 
+                  {/* <InputText
                   autocapitalize={true}
                   onChangeText={handleChange('companyName')}
                   value={values.companyName}
-                />
+                /> */}
+                </TouchableOpacity>
+                {/*  */}
+                
                 <View
                   style={{
                     flexDirection: 'row',
