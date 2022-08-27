@@ -41,7 +41,7 @@ export const InputText = ({
       ]}>
       <TextInput
         placeholder={placeholder}
-        placeholderTextColor={'#0D0140'}
+        placeholderTextColor={'#AAA6B9'}
         onChangeText={onChangeText}
         onBlur={onBlur}
         value={value}
@@ -74,5 +74,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     borderRadius: wp(3),
     marginTop: wp(4),
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.20,
+    shadowRadius: 1.41,
+
+    elevation: 2,
   },
 });
