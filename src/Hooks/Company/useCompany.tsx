@@ -37,6 +37,7 @@ export const useCompany = () => {
   const usuarioActual: string = auth.auth().currentUser?.uid!;
   const [idRandom, setIdRandom] = useState('');
   const [image, setImage] = useState('');
+  const [nameCompany, setNameCompany] = useState('');
 
   useEffect(() => {
     getCompanies()
@@ -182,6 +183,8 @@ export const useCompany = () => {
     registerNewCompany,
     companyResult,
     companiesDB,
-    image
+    image,
+    nameCompany,
+    setNameCompany,
   };
 };

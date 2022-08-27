@@ -18,6 +18,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamListAuth} from '../../Hooks/navigations/exportNavigation';
 import {useNavigation} from '@react-navigation/core';
 import {useEffect} from 'react';
+import { TouchableOpacity } from 'react-native';
 
 type navigationHeader = NativeStackNavigationProp<RootStackParamListAuth>;
 
@@ -30,25 +31,36 @@ export const HomeCompany = () => {
   const navigation = useNavigation<navigationHeader>();
   const keyExtractor = (item: any, index: any) => index.toString();
 
-  const {companies, handleOnChangeText, value, companyResult, companiesDB} =
+  const {companies, handleOnChangeText, value, companyResult, companiesDB, setNameCompany} =
     useCompany();
   useEffect(() => {
-    console.log('resultados de la compañia ->', companiesDB);
+    //console.log('resultados de la compañia ->', companiesDB);
   }, [companiesDB]);
 
   //const renderItem =
 
   const Item = (title: any, logo: any) => {
+    useEffect(() => {
+      console.log(title);
+      
+    
+    
+    }, [])
     
     return (
-      <View style={styles.containerCompanies}>
+      <TouchableOpacity 
+        onPress={()=>{
+          setNameCompany(title.title)
+          navigation.navigate('WorkExperience');
+        }}
+      style={styles.containerCompanies}>
         <Image
             source={{uri: title.logo}}
             style={{width: wp(10), height: wp(10)}}
             resizeMode='contain'
         />
         <TextUi style="txtCommonEtiquetas" texto={title.title} addStyle={{marginLeft: wp(3)}} />
-      </View>
+      </TouchableOpacity>
     );
   };
 
