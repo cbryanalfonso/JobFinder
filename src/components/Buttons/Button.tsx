@@ -76,6 +76,15 @@ const getButtonStyle = (color: any) => {
         //marginVertical: wp(6),
         borderRadius: wp(2),
       };
+    case 'buttonFollowCompany':
+      return {
+        borderWidth: 1,
+        borderColor: '#7551FF',
+        paddingVertical: wp(2),
+        paddingHorizontal: wp(2),
+        //marginVertical: wp(6),
+        borderRadius: wp(2),
+      };
 
     default:
       return {
@@ -113,6 +122,14 @@ const getTextStyle = (color: any) => {
     case 'buttonEditProfile':
       return {
         color: '#FFF',
+        // color: '#130160',
+       // fontWeight: 'bold',
+        fontSize: wp(3.5),
+       // alignSelf: 'center',
+      };
+    case 'buttonFollowCompany':
+      return {
+        color: '#0D0140',
         // color: '#130160',
        // fontWeight: 'bold',
         fontSize: wp(3.5),
