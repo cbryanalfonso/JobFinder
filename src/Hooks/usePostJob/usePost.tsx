@@ -56,6 +56,7 @@ const usePost = () => {
             idUser: usuarioActual,
             postTitle,
             postDescription,
+            datePost: new Date(),
           })
           .then(() => {
             console.log('Post publicado correctamente');

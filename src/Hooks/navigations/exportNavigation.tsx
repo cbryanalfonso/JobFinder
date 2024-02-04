@@ -18,4 +18,6 @@ export type RootStackParamList = {
     RegisterCompany: undefined;
     HomeResume: undefined;
     CreatePost: undefined;
+    CreateJob: undefined;
+    HomePostings: any;
   };

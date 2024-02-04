@@ -83,11 +83,6 @@ export const WorkExperience = () => {
                       color: '#0D0140',
                     }}
                   /> 
-                  {/* <InputText
-                  autocapitalize={true}
-                  onChangeText={handleChange('companyName')}
-                  value={values.companyName}
-                /> */}
                 </TouchableOpacity>
                 {/*  */}
                 

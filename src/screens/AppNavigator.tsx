@@ -20,6 +20,8 @@ import { HomeCompany } from './Company/HomeCompany'
 import { RegisterCompany } from './Company/RegisterCompany';
 import HomeResume from './HomeProfile/HomeResume';
 import CreatePost from './Post/CreatePost';
+import CreateJob from './Post/CreateJob';
+import HomePostings from './Post/HomePostings';
 
 const MainStackAuth = createNativeStackNavigator<RootStackParamListAuth>();
 const MainStackNoAuth = createNativeStackNavigator<RootStackParamList>();
@@ -48,6 +50,20 @@ export const AppNavigator = () => {
     }}
     />
     <MainStackAuth.Screen name='CreatePost' component={CreatePost} options={{
+       headerStyle: {
+        backgroundColor: backGroundScreenStart,
+      },
+      headerLeft: props => <ButtonBack style='buttonBackAboutMe' colorIcon='#3B4657' />,
+    }}
+    />
+    <MainStackAuth.Screen name='CreateJob' component={CreateJob} options={{
+       headerStyle: {
+        backgroundColor: backGroundScreenStart,
+      },
+      headerLeft: props => <ButtonBack style='buttonBackAboutMe' colorIcon='#3B4657' />,
+    }}
+    />
+    <MainStackAuth.Screen name='HomePostings' component={HomePostings} options={{
        headerStyle: {
         backgroundColor: backGroundScreenStart,
       },

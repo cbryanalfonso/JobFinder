@@ -94,6 +94,14 @@ const getTextStyle = (color: any) => {
                     paddingLeft: wp(1),
                     paddingTop: wp(2),
                   }
+                case 'txtGrayDescription':
+                  return{
+                    color: '#AAA6B9',
+                    fontSize: wp(3),
+                    //fontWeight: 'bold',
+                    paddingLeft: wp(1),
+                    paddingTop: wp(2),
+                  }
     default:
       return {
         color: '#FFFFFF',
